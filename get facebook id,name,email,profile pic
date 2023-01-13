@@ -1,0 +1,21 @@
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.net.http.HttpResponse.BodyHandlers;
+public class get_profilepicusingapi {
+    public static void main(String[] args)
+    {
+        try {
+                HttpRequest request = HttpRequest.newBuilder()
+                .uri(new URI("https://graph.facebook.com/me?fields=id,name,email,picture&access_token=EAAMKJXiI7UEBADkYlOfAPfzq5hRbyl0kqhtWy3AwcPF4lOGmCZAWRc6tRSY5aStVkF9t1tSBXRWTAZC7mb5oWDEeFkur0bBYR6te0tfCgZAKoPZBjap7nGZBkT6nmpfYZCJtJDSBtqfyoJAbtEEruwLMU0aRfOc9efDZCncuwNwHiXixEDcahMSTjKBbcRzZAROtvVCDX09BKjtu1KveAFV6dJaizX0V4gTRtM8hV1OPhKVv3ISexPxv")).build();
+                HttpClient http = HttpClient.newHttpClient();
+                HttpResponse response = http.send(request,BodyHandlers.ofString());
+                System.out.println(response.body());
+    }
+catch (Exception e) {
+    System.out.println("exception ");
+    e.printStackTrace();
+    }
+}
+}
