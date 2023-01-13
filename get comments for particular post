@@ -1,0 +1,21 @@
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.net.http.HttpResponse.BodyHandlers;
+public class get_idname_usingapi {
+    public static void main(String[] args)
+    {
+        try {
+                HttpRequest request = HttpRequest.newBuilder()
+                .uri(new URI("https://graph.facebook.com/698697675183310_698725911847153/comments?access_token=EAAMKJXiI7UEBALomd40Tjv4xlmiGpADc877rJhy4kV5G4n3KP9sznNdTzo0K1es7NZAGRNpPXYc5b521ekvdisX1l0ltFmI7gwcpXZCZB7MefqWpbpjDZCtfFNbgJQ1qQEwKZAevG6MLzB7iU7thZAEH7tilLTVU2K74eHZAT90UbTLQpYtKMwZACZBa2q16Tp1vATRkaFxOf8S9H7sy6bQGkdy0pqwF4ssdDja7R3HR3VhuQFz5wQ0o8")).build();
+                HttpClient http = HttpClient.newHttpClient();
+                HttpResponse response = http.send(request,BodyHandlers.ofString());
+                System.out.println(response.body());
+    }
+catch (Exception e) {
+    System.out.println("exception ");
+    e.printStackTrace();
+    }
+}
+}
