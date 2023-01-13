@@ -1,0 +1,46 @@
+package com.example;
+import java.net.HttpURLConnection;
+import java.net.URI;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.net.http.HttpResponse.BodyHandlers;
+import java.util.HashMap;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+public class App {
+    public static void main(String[] args)
+    {
+        try {
+    HashMap<String, String> values = new HashMap<String, String>() {{
+        put("message", "Ramya neha hellooo");
+        //put("link", "https://developers.facebook.com/docs/workplace/custom-integrations/apps");
+        put ("access_token", "EAAMKJXiI7UEBANS3M0CZCH3vU1exBxV8dreuqK6975Mrn3jC5i58CaRfZBBB8LeeKVcSeSNH0L830U9JaKKJaC0md9jzip7fMe68Vq3oNeW91DXC9voHqAqX4z07P7ARriWFLZBAbqMmYMTAnl0qSrouO2LXc8ZC1FUO35S1MQNph3FLMLnfroeZBgN4qGy6Lq47U8bwS1byFR6rbBN90Gv55FBT5RZC2ZBVZBiqC3YCRL37abZB9PEbs");
+    }};
+
+    ObjectMapper objectMapper = new ObjectMapper();
+    String requestBody = objectMapper
+            .writeValueAsString(values);
+
+    HttpClient client = HttpClient.newHttpClient();
+    HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://graph.facebook.com/698697675183310/feed?message=hellooooo&link=https://developers.facebook.com/docs/workplace/custom-integrations/apps&access_token=EAAMKJXiI7UEBAMF7au6gZCn3F1Hkssd4CZCkXEfe9ntbZBwzaWgIXwYw4SWKtegiyX0zDrkkD3yyyzoOkI8W8ZBo2c3b0HM6RSmTIqcKQi9VTjmauNT1YBlMn9Lm4CMsT6Dqr6f2vZB96DtpP56j91h5mk90hNMRVWAUyLu3b6QVM3VkTZAK4v2rhlnjhpxrqMDfewzOKloP0uR4iyCCzZBdGuiFxec1rHSGDnZAj9B9q9LMVUKkwgwx"))
+            .POST(HttpRequest.BodyPublishers.ofString(requestBody))
+            .build();
+
+    HttpResponse<String> response = client.send(request,
+            HttpResponse.BodyHandlers.ofString());
+
+    System.out.println(response.body());
+    
+
+        }
+
+catch (Exception e) {
+    System.out.println("exception ");
+    e.printStackTrace();
+    }
+}
+}
